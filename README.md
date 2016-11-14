@@ -6,3 +6,6 @@ Node.js => 방대한 패키지 생태계 +++
 npm ( node package manager )
 npm install "----" ( npn install request ) => node_module/ 라는 폴더에 다운로드
 
+JWT Token ( JSON Web Token ) - token authentication ( 보안성 좋음 )
+login api ( username, password ) ===> JWT ...
+그다음 요청부터는 모든 header 에 내가 받은 JWT ...
