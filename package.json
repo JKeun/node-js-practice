@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JKeun/node-js-practice/issues"
   },
-  "homepage": "https://github.com/JKeun/node-js-practice#readme"
+  "homepage": "https://github.com/JKeun/node-js-practice#readme",
+  "dependencies": {
+    "request": "^2.78.0"
+  }
 }
