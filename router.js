@@ -10,7 +10,7 @@ var httpRequest = require('request');
 // 이렇게 이름을 바꿔서 가져오는 이유는 변수명 충돌을 막기 위해서
 
 router.get("/", function(req, res) {
-    return res.send("HOME");
+    return res.render("home");
 });
 
 router.get("/about/", function(req, res) {
