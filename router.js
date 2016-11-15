@@ -14,7 +14,7 @@ router.get("/", function(req, res) {
 });
 
 router.get("/about/", function(req, res) {
-    return res.send("ABOUT");
+    return res.render("about");
 });
 
 router.get("/rooms/:roomId/", function(req, res) {

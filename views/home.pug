@@ -1,6 +1,9 @@
-h1 Home
-p This is home page.
+extends ./base
 
-ul
-    each animal in animals
-        li #{animal}
+block content
+    h1 Home
+    p This is home page.
+
+    ul
+        each animal in animals
+            li #{animal}
