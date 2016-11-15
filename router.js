@@ -2,12 +2,14 @@
 // 하나의 미들웨어 형태로 만들어서
 // ===> express 에서 불러 쓸 수 있도록 하자.
 
-
+var path = require('path');
 var express = require('express');
 var router = express.Router();
 
 var httpRequest = require('request');
 // 이렇게 이름을 바꿔서 가져오는 이유는 변수명 충돌을 막기 위해서
+
+var csv = require("./csv");
 
 router.get("/", function(req, res) {
     return res.render("home", {animals: ["dog", "cat", "bird", "cow"]});
@@ -39,5 +41,15 @@ router.get("/watcha/", function(req, res) {
         return res.render("watcha", {newsItems: data["news"]});
     });
 });
+
+router.get("/api/:filename", function(req, res) {
+    var filename = req.params.filename;
+    var filePath = path.join(__dirname, "csv", filename + ".csv");
+
+    // /api/students/ ===> ./csv/students.csv";
+    var data = csv(filePath);
+    return res.send(data);
+});
+
 
 module.exports = router;
