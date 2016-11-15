@@ -33,7 +33,10 @@ router.get("/watcha/", function(req, res) {
 
     var url = "https://watcha.net/home/news.json?page=2&per=20";
     httpRequest(url, function(error, httpResponse, body) {
-        return res.send(JSON.parse(body));
+        var data = JSON.parse(body);
+        // return res.send(data);
+        
+        return res.render("watcha", {newsItems: data["news"]});
     });
 });
 
