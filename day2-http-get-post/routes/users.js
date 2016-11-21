@@ -12,7 +12,7 @@ router.get("/", function(req, res) {
     );
     var rows = data.split("\n");
     var users = [];
-    row.forEach(function(row) {
+    rows.forEach(function(row) {
         var name = row.split(",")[0];
         var email = row.split(",")[1];
         var phonenumber = row.split(",")[2];
