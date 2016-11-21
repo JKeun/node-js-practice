@@ -8,6 +8,7 @@ var morgan = require('morgan');
 var homeRouter = require("./routes/home");
 var httpRouter = require("./routes/http");
 var watchaRouter = require("./routes/watcha");
+var usersRouter = require("./routes/users");
 
 
 var app = express();
@@ -29,6 +30,7 @@ app.use(morgan("combined"));
 app.use("/", homeRouter);
 app.use("/http/", httpRouter);
 app.use("/watcha/", watchaRouter);
+app.use("/users/", usersRouter);
 
 
 app.listen(process.env.PORT | 3030, function() {

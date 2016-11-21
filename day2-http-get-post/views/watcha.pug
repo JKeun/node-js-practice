@@ -7,7 +7,7 @@ block content
     // action : 어떤 주소에 http 요청을 보내는가 / http method 는 어떤방식인가
     // 그런데 둘다 디폴트(자기자신, GET방식)이므로 안써도됨
     form(action="/watcha/", method="GET")
-        input(type="text" name="query" placeholder="검색어")
+        input(type="text" name="query" value=query placeholder="검색어")
         input(type="submit" value="검색")        
 
     if query
