@@ -1,16 +1,28 @@
 var path = require('path');
 var express = require('express');
 
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+
+
+var homeRouter = require("./routes/home");
+var httpRouter = require("./routes/http");
+
 var app = express();
 
-
+// application settings
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
+// Middleware settings ( 3rd Party Packages )
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", function(req, res) {
-    return res.render("home");
-});
+app.use(morgan("combined"));
+
+// Middleware settings
+app.use("/", homeRouter);
+app.use("/http/", httpRouter);
 
 
 app.listen(process.env.PORT | 3030, function() {
