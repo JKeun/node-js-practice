@@ -10,7 +10,8 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-    return res.send("POST!!!!");
+    var data = req.body;
+    return res.send(data);
 });
 
 
