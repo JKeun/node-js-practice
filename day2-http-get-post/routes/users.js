@@ -40,7 +40,7 @@ router.get("/", function(req, res) {
         users = matchedUserList;
     }
 
-    return res.render("users", {users: users});
+    return res.render("users", {users: users, search: search});
 });
 
 

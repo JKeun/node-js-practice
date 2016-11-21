@@ -6,7 +6,10 @@ block content
     form(action="/users/" method="GET")
         input(type="text" name="search")
         input(type="submit" value="검색")
-    
+       
+    if (search)
+        p "#{search}" 에 대한 검색 결과입니다.
+ 
     ul
         each user in users
             li #{user.name} | #{user.email} | #{user.phonenumber}
