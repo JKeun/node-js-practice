@@ -6,9 +6,12 @@ block content
 
     // action : 어떤 주소에 http 요청을 보내는가 / http method 는 어떤방식인가
     // 그런데 둘다 디폴트(자기자신, GET방식)이므로 안써도됨
-    form(action="/wathca/", method="GET")
+    form(action="/watcha/", method="GET")
         input(type="text" name="query" placeholder="검색어")
         input(type="submit" value="검색")        
+
+    if query
+        p "#{query}" 에 대한 검색 결과입니다.
 
     ul
         each newsItem in newsItems
