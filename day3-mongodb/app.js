@@ -3,10 +3,20 @@ var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var mongoose = require('mongoose');
 
 
 var homeRouter = require("./routes/home");
 var aboutRouter = require("./routes/about");
+
+
+mongoose.connect("mongodb://localhost/nodecamp");
+// mongoose.connet("mongodb://mongodb.dobest.io/jkpark");
+var db = mongoose.connection;
+
+db.once("open", function() {
+    console.log("Database is connected");
+});
 
 
 var app = express();
