@@ -11,7 +11,7 @@ var aboutRouter = require("./routes/about");
 
 
 mongoose.connect("mongodb://localhost/nodecamp");
-// mongoose.connet("mongodb://mongodb.dobest.io/jkpark");
+//mongoose.connect("mongodb://mongodb.dobest.io/jkpark2");
 var db = mongoose.connection;
 
 db.once("open", function() {
