@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var homeRouter = require("./routes/home");
 var aboutRouter = require("./routes/about");
+var moviesRouter = require("./routes/movies");
 
 
 mongoose.connect("mongodb://localhost/nodecamp");
@@ -34,6 +35,7 @@ app.use(morgan("combined"));
 
 app.use("/", homeRouter);
 app.use("/about/", aboutRouter);
+app.use("/movies/", moviesRouter);
 
 
 app.listen(process.env.PORT | 3030, function() {
