@@ -1,0 +1,9 @@
+h1 Movies
+p #{movieItems.length} 개의 영화 정보가 있습니다.
+
+ul
+    each movieItem in movieItems
+        li
+            img(src=movieItem.image)
+            h2= movieItem.title
+            p= movieItem.content
