@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var homeRouter = require("./routes/home");
 var aboutRouter = require("./routes/about");
 var moviesRouter = require("./routes/movies");
+var contactsRouter = require("./routes/contacts");
 
 
 mongoose.connect("mongodb://localhost/nodecamp");
@@ -36,6 +37,7 @@ app.use(morgan("combined"));
 app.use("/", homeRouter);
 app.use("/about/", aboutRouter);
 app.use("/movies/", moviesRouter);
+app.use("/contacts/", contactsRouter);
 
 
 app.listen(process.env.PORT | 3030, function() {
