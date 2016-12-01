@@ -65,3 +65,16 @@ $ chmod a+x mongod
     - 데이터베이스
     - Collections
     - Documents ===> JSON ( 객체 )
+
+## 지금까지 배운 것
+- CRUD - Create, Retrieve(list)
+
+## 앞으로 배울 것
+- Retrieve(detail...), Update, Destroy
+- hooks
+    - created at
+    - updated at
+    - 만약 회원가입이 되면, 회원가입 안내 문자메세지 보내기
+- 지금까진, 모델 => 값 ( state, property )
+- 앞으로, 모델 => 값 + 행동
+- 회원가입, 로그인 기능 구현 가능
