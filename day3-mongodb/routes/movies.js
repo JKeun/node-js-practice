@@ -5,7 +5,9 @@ var Movie = require("../models/movie");
 
 
 router.get("/", function(req, res) {
-    return res.send("movies!");
+    Movie.find({}, function(error, movies) {
+        return response.render("movies", {movieItems: movies});
+    });
 });
 
 
