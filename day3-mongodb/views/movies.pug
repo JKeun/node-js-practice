@@ -1,6 +1,11 @@
 h1 Movies
 p #{movieItems.length} 개의 영화 정보가 있습니다.
 
+
+form(action="/movies/" method="GET")
+    input(type="text" name="query" placeholder="검색어")
+    input(type="submit" value="검색")
+
 ul
     each movieItem in movieItems
         li

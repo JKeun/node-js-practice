@@ -5,7 +5,9 @@ var Movie = require("../models/movie");
 
 
 router.get("/", function(req, res) {
-    Movie.find({}, function(error, movies) {
+    var mongoQuery = {}; // 이름 검색
+
+    Movie.find(mongoQuery, function(error, movies) {
         return res.render("movies", {movieItems: movies});
     });
 });
