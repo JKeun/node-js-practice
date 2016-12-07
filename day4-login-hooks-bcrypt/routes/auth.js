@@ -11,7 +11,17 @@ router.get("/login/", function(req ,res) {
 
 
 router.post("/login/", function(req, res, next) {
-    // login
+    var username = req.body.username;
+    var password = req.body.password;
+
+    User.authenticate(username, password, function(error, user) {
+        if (error) return next(error);
+
+        if (user) {
+            console.log("User 로그인 성공 !!");
+            return res.redirect("/");
+        }
+    });
 });
 
 
