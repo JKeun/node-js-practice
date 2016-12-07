@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 
+var bcrypt = require('bcrypt');
+
+
 // 1. userSchema ( new mongoose.Schema({...}))
 var userSchema = new mongoose.Schema({
     username: {
@@ -16,6 +19,20 @@ var userSchema = new mongoose.Schema({
     },
     phonenumber: String,
     password: String,
+});
+
+
+// 만약, save 하기 직전에 입력받은 암호를 hash화 하여 저장하는 기능
+userSchema.pre("save", function(next) {
+    // 비밀번호 hashing => bcrypt 암호화 방식
+    var user = this;  // user.username, user.email ... 유저가 바로 직전에 입력한것
+    bcrypt.hash(user.password, 10, function(error, hash) {  // 10번 암호화작업
+        
+        console.log("BCRYPT 가 실행되었습니다!!!");
+
+        user.password = hash;
+        next();
+    }); 
 });
 
 
