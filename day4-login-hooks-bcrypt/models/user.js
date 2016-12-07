@@ -37,12 +37,26 @@ userSchema.pre("save", function(next) {
 
 
 userSchema.statics.authenticate = function(username, password, callback) {
-    // collback(error, user);
-    
-    // 1. User.authenticate() ... == statics 모델에 연결
-    // 2. user.introduce() ... methods 다큐먼트(객체)에 연결
+    User.findOne({username: username}, function(error, user) {
+        if (error) return callback(error);
+        if (!user) {
+            var error = new Error("username 에 매칭되는 유저가 없습니다.");
+            return callback(error);
+        }
 
-}
+        // 비밀번호와 hashing 비밀번호가 맞는지 비교해주는 함수
+        bcrypt.compare(password, user.password, function(error, result) {
+            if (error) return callback(error);
+
+            if (result) {
+                return callback(null, user);
+            } else {
+                var error = new Error("비밀번호가 틀렸습니다.");
+                return callback(error);
+            }
+        });
+    });
+};
 
 
 
