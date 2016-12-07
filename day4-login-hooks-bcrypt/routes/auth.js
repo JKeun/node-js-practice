@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var User = require("../models/user");
+
 
 router.get("/login/", function(req ,res) {
     // login form rendering
@@ -20,7 +22,16 @@ router.get("/signup/", function(req, res) {
 
 
 router.post("/signup/", function(req, res) {
-    // signup
+   var user = new User({
+       username: req.body.username,
+       email: req.body.email,
+       phonenumber: req.body.phonenumber,
+       password: req.body.password
+   });
+
+   user.save(function(error, user) {
+       return res.redirect("/");
+   });
 });
 
 
