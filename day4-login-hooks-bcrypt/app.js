@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
+var session = require('express-session');
 
 
 var homeRouter = require("./routes/home");
@@ -23,6 +24,13 @@ var app = express();
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
+
+
+app.use(session({
+    secret: "Node.js",
+    resave: true,
+    saveUninitialized: true,
+}));
 
 
 app.use(morgan("combined"));
