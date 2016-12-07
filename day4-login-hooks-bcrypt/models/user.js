@@ -36,6 +36,16 @@ userSchema.pre("save", function(next) {
 });
 
 
+userSchema.statics.authenticate = function(username, password, callback) {
+    // collback(error, user);
+    
+    // 1. User.authenticate() ... == statics 모델에 연결
+    // 2. user.introduce() ... methods 다큐먼트(객체)에 연결
+
+}
+
+
+
 // 2. User ( mongoose.model("User", userSchema))
 var User = mongoose.model("User", userSchema);
 
