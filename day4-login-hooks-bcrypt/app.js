@@ -31,12 +31,19 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }));
+// request.session.user = user;
 
 
 app.use(morgan("combined"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+
+app.use(function(req, res, next) {
+    res.locals.user = request.session.user;
+    next();
+});
 
 
 app.use("/", homeRouter);

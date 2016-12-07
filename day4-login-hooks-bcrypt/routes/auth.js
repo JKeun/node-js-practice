@@ -19,6 +19,7 @@ router.post("/login/", function(req, res, next) {
 
         if (user) {
             console.log("User 로그인 성공 !!");
+            req.session.user = user;
             return res.redirect("/");
         }
     });
