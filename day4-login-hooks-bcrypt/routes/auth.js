@@ -47,23 +47,11 @@ router.post("/signup/", function(req, res) {
 });
 
 
-router.get(
-    "/profile/",
-    
-    // 1. #1 Middleware
-    function(req, res, next) {
-        if (!req.session.user) {
-            req.flash("error", "로그인이 필요한 페이지입니다.");
-            return res.redirect("/login/");
-        }
-    next();
-    },
+var authMiddleware = require("../middlewares/auth");
 
-    // 2. #2 Middleware
-    function(req, res) {
-        return res.render("auth/profile");
-    }
-);
+router.get("/profile/", authMiddleware.loginRequired, function(req, res) {
+    return res.render("auth/profile");
+});
 
 
 module.exports = router;
