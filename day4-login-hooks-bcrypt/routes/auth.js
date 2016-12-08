@@ -47,17 +47,23 @@ router.post("/signup/", function(req, res) {
 });
 
 
-router.get("/profile/", function(req, res, next) {
-    if (!req.session.user) {
-        req.flash("error", "로그인이 필요한 페이지입니다.");
-        return res.redirect("/login/");
-    }
+router.get(
+    "/profile/",
+    
+    // 1. #1 Middleware
+    function(req, res, next) {
+        if (!req.session.user) {
+            req.flash("error", "로그인이 필요한 페이지입니다.");
+            return res.redirect("/login/");
+        }
     next();
-});
+    },
 
-router.get("/profile/", function(req, res) {
-    return res.render("auth/profile");
-});
+    // 2. #2 Middleware
+    function(req, res) {
+        return res.render("auth/profile");
+    }
+);
 
 
 module.exports = router;
