@@ -50,6 +50,14 @@ app.use("/", homeRouter);
 app.use("/", authRouter);
 
 
+app.use(function(error, req, res, next) {
+    // if (error) return next(error);
+
+    return res.render("error", {error: error}); 
+    next();
+});
+
+
 app.listen(process.env.PORT || 3030, function() {
     console.log("Server is running!");
 });
