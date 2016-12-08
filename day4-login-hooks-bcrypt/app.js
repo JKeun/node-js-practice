@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(function(req, res, next) {
-    res.locals.user = request.session.user;
+    res.locals.user = req.session.user;
     next();
 });
 
