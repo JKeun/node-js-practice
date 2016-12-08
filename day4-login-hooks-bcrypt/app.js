@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var flash = require('connect-flash');
+var messages = require('express-messages');
 
 
 var homeRouter = require("./routes/home");
@@ -34,9 +36,19 @@ app.use(session({
 // request.session.user = user;
 
 
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(require("connect-flash")());
+app.use(flash());
+app.use(function(req, res next) {
+    res.locals.messages = messages(req, res);
+    next();
+});
+
+
+app.use(
+    express.static(path.join(__dirname, "public"))
+);
 // staticfile serving
-// "/css/application.css" => "public/css/application.css"
+// "url../css/application.css" => "public/css/application.css"
 
 app.use(morgan("combined"));
 
