@@ -53,6 +53,7 @@ app.use("/", authRouter);
 app.use(function(error, req, res, next) {
     // if (error) return next(error);
 
+    res.status(error.status || 500); // 500 Internel Server Error
     return res.render("error", {error: error}); 
     next();
 });

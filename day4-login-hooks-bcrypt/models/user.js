@@ -40,7 +40,10 @@ userSchema.statics.authenticate = function(username, password, callback) {
     User.findOne({username: username}, function(error, user) {
         if (error) return callback(error);
         if (!user) {
+            // 200 OK
+            // 401 UnAuthorized
             var error = new Error("username 에 매칭되는 유저가 없습니다.");
+            error.status = 401;
             return callback(error);
         }
 
