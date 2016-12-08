@@ -41,6 +41,7 @@ router.post("/signup/", function(req, res) {
    });
 
    user.save(function(error, user) {
+       req.flash("success", "회원가입 성공했습니다.");
        return res.redirect("/");
    });
 });
