@@ -47,4 +47,9 @@ router.post("/signup/", function(req, res) {
 });
 
 
+router.get("/profile/", function(req, res) {
+    return res.render("auth/profile");
+});
+
+
 module.exports = router;
