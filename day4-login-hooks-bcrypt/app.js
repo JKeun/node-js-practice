@@ -34,6 +34,10 @@ app.use(session({
 // request.session.user = user;
 
 
+app.use(express.static(path.join(__dirname, "public")));
+// staticfile serving
+// "/css/application.css" => "public/css/application.css"
+
 app.use(morgan("combined"));
 
 app.use(bodyParser.json());
