@@ -5,7 +5,13 @@ header
     ul
         li
             a(href="/") home
-        li
-            a(href="/login/") Login
-        li
-            a(href="/signup/") Signup
+        if !user
+            li
+                a(href="/signup/") Sign Up
+            li
+                a(href="/login/") Login
+        if user
+            li
+                a(href="/profile/") Profile
+            li
+                a(href="/logout/") Logout
