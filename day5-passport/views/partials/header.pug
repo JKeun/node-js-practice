@@ -1,0 +1,17 @@
+header
+    h1 Header
+
+    h2 Menu
+    ul
+        li
+            a(href="/") home
+        if !user
+            li
+                a(href="/signup/") Sign Up
+            li
+                a(href="login") Login
+        if user
+            li
+                a(href="/profile/") Profile - #{user.username}
+            li
+                a(href="/logout/") Logout

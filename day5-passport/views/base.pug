@@ -1,0 +1,13 @@
+doctype html
+
+html
+    head
+        title node.js
+        
+        link(rel="stylesheet" href="/css/application.css")
+
+    body
+        != messages()
+        include ./partials/header
+        block content
+        include ./partials/footer
