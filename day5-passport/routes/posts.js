@@ -33,7 +33,7 @@ router.route("/")
 
 router.route("/new/")
     .get(function(req, res) {  // posts:new
-    
+        return res.render("posts/new");
     });
 
 

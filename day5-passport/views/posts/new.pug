@@ -1,0 +1,11 @@
+extends ../base
+
+
+block content
+    h1 New Post
+
+    form(action="/posts/" method="POST")
+        input(type="text" name="title" placeholder="제 목")
+        textarea(name="content" placeholder="본 문")
+
+        input(type="submit" value="publish")
