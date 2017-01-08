@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var flash = require('connect-flash');
 var messages = require('express-messages');
+var passport = require('passport');
 
 
 var homeRouter = require("./routes/home");
@@ -43,6 +44,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+// session 정의 한 뒤에 passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 app.use(function(req, res, next) {
