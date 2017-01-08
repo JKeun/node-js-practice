@@ -37,13 +37,22 @@ router.route("/new/")
     });
 
 
-router.get("/:postId/", function(req, res) {
-    var postId = req.params.postId;
-        
+router.param("postId", function(req, res, next, postId) {
     Post.findOne({_id: postId}, function(error, post) {
-        return res.render("posts/detail", {post: post});
+        if (error) return next(error);
+
+        req.post = post;
+        next();
     });
 });
+
+
+router.get("/:postId/", function(req, res) {
+    return res.render("posts/detail", {post: req.post});        
+});
+
+
+
 
 
 module.exports = router;
