@@ -57,7 +57,10 @@ app.use(function(req, res, next) {
 
 
 app.use(function(req, res, next) {
-    res.locals.user = req.session.user;
+    res.locals.user = req.user;
+    // => 우리는 기존에 req.session.user 에 저장
+    // => passport-local 의 경우에는 req.user 에 저장
+
     next();
 });
 
