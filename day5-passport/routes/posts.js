@@ -37,4 +37,13 @@ router.route("/new/")
     });
 
 
+router.get("/:postId/", function(req, res) {
+    var psotId = req.params.postId;
+        
+    Post.findOne({_id: postId}, function(error, post) {
+        return res.render("posts/detail", {post: post});
+    });
+});
+
+
 module.exports = router;
