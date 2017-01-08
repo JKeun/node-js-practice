@@ -12,7 +12,7 @@ router.route("/")
     .get(function(req, res, next) {  // posts:list
         Post.find({}, function(error, posts) {
             if (error) return next(error);
-            return res.redner("posts/list", {posts: posts});
+            return res.render("posts/list", {posts: posts});
         }) 
     })
 
