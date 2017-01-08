@@ -17,7 +17,17 @@ router.route("/")
     })
 
     .post(function(req, res) {  // posts:cerate
-    
+        var title = req.body.title;
+        var content = req.body.content;
+
+        var post = new Post({
+            title: title,
+            content: content
+        });
+
+        post.save(function(error, post) {
+            return res.redirect("/posts/");
+        });
     });
 
 
