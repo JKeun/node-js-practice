@@ -51,25 +51,27 @@ userSchema.statics.deserialize = function() {
 };
 
 
-userSchema.statics.authenticate = function(username, password, callback) {
-    User.findOne({username: username}, function(error, user) {
-        if (error) return callback(error);
-        if (!user) {
-            var error = new Error("username 에 매칭되는 유저가 없습니다.");
-            error.status = 401;
-            return callback(error);
-        }
-
-        bcrypt.compare(password, user.password, function(error, result) {
+userSchema.statics.authenticate = function() {
+    return function(username, password, callback) {
+        User.findOne({username: username}, function(error, user) {
             if (error) return callback(error);
-            if (result) {
-                return callback(null, user);
-            } else {
-                var error = new Error("비밀번호가 틀렸습니다.");
+            if (!user) {
+                var error = new Error("username 에 매칭되는 유저가 없습니다.");
+                error.status = 401;
                 return callback(error);
             }
+
+            bcrypt.compare(password, user.password, function(error, result) {
+                if (error) return callback(error);
+                if (result) {
+                    return callback(null, user);
+                } else {
+                    var error = new Error("비밀번호가 틀렸습니다.");
+                    return callback(error);
+                }
+            });
         });
-    });
+    }
 };
 
 

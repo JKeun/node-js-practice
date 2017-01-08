@@ -15,7 +15,7 @@ var passportLocalStrategy = passportLocal.Strategy;
 // 3. deserialize ( userId => user )
 
 
-passport.use(new passportLocalStrategy(User.authenticate));
+passport.use(new passportLocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serialize());
 passport.deserializeUser(User.deserialize());
