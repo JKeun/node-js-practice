@@ -6,6 +6,26 @@ var User = require("../models/user");
 var authMiddleware = require("../middlewares/auth");
 
 
+var passport = require('passport');
+var passportLocal = require('passport-local');
+var passportLocalStrategy = passportLocal.Strategy;
+
+// 1. authenticate = User.authenticate
+// 2. serialize ( user => user._id )
+// 3. deserialize ( userId => user )
+
+
+passport.use(new passportLocalStrategy(User.authenticate));
+passport.serializeUser = function(user, next) {
+    next(null, user._id);
+}
+passport.deserialize = function(userId, next) {
+    User.findOne({_id: userId}, function(error, user) {
+        next(error, user);
+    });
+}
+
+
 router.route("/login/")
     .get(function(req ,res) {
         return res.render("auth/login");    
