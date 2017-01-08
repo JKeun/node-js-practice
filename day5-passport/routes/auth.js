@@ -16,34 +16,30 @@ var passportLocalStrategy = passportLocal.Strategy;
 
 
 passport.use(new passportLocalStrategy(User.authenticate));
-passport.serializeUser = function(user, next) {
+
+passport.serializeUser(function(user, next) {
     next(null, user._id);
-}
-passport.deserialize = function(userId, next) {
+});
+
+passport.deserializeUser(function(userId, next) {
     User.findOne({_id: userId}, function(error, user) {
         next(error, user);
     });
-}
+});
+
 
 
 router.route("/login/")
     .get(function(req ,res) {
         return res.render("auth/login");    
     })
-    .post(function(req, res, next) {
-        var username = req.body.username;
-        var password = req.body.password;
+    .post(
+        passport.authenticate("local"),
 
-        User.authenticate(username, password, function(error, user) {
-            if (error) return next(error);
-
-            if (user) {
-                console.log("User 로그인 성공 !!!");
-                req.session.user = user;
-                return res.redirect("/");
-            }   
-        });
-    }); 
+        function(req, res, next) {
+            return res.redirect("/");
+        }
+    ); 
 
 
 router.route("/signup/")
