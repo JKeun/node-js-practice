@@ -26,7 +26,7 @@ router.route("/")
         });
 
         post.save(function(error, post) {
-            return res.redirect("/posts/");
+            return res.redirect("/posts/" + post._id + "/");
         });
     });
 
@@ -38,7 +38,7 @@ router.route("/new/")
 
 
 router.get("/:postId/", function(req, res) {
-    var psotId = req.params.postId;
+    var postId = req.params.postId;
         
     Post.findOne({_id: postId}, function(error, post) {
         return res.render("posts/detail", {post: post});
