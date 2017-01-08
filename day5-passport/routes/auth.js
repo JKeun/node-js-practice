@@ -17,16 +17,8 @@ var passportLocalStrategy = passportLocal.Strategy;
 
 passport.use(new passportLocalStrategy(User.authenticate));
 
-passport.serializeUser(function(user, next) {
-    next(null, user._id);
-});
-
-passport.deserializeUser(function(userId, next) {
-    User.findOne({_id: userId}, function(error, user) {
-        next(error, user);
-    });
-});
-
+passport.serializeUser(User.serialize());
+passport.deserializeUser(User.deserialize());
 
 
 router.route("/login/")
