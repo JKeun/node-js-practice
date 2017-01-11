@@ -1,4 +1,4 @@
-var User = require("../module/user");
+var User = require("../models/user");
 
 
 var passportLocal = require('passport-local');

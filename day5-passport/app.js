@@ -49,6 +49,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+require("./config/passport")(passport);
+
+
 app.use(flash());
 app.use(function(req, res, next) {
     res.locals.messages = messages(req, res);
