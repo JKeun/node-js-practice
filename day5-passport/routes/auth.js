@@ -28,7 +28,7 @@ passport.use(new passportKakaoStrategy(
         clientID: "580d5f3bd932796915950408014f8a81", // REST API
         callbackURL: "http://localhost:3030/auth/kakao/callback"
     },
-    function (accessToken, refreshToken, profile, done){
+    function (accessToken, refreshToken, profile, next){
         User.findOne({_idd: profile.id}, function(error, user) {
             if (user) { return next(error, user); }
             var user = new User({
@@ -57,6 +57,11 @@ router.route("/login/")
 
 
 router.get("/login/kakao/",
+    passport.authenticate("kakao")
+);
+
+
+router.get("/auth/kakao/callback", 
     passport.authenticate("kakao"),
     function(req, res) {
         return res.redirect("/");
